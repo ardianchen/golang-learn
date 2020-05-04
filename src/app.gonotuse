@@ -1,0 +1,24 @@
+package app
+
+import (
+	// "github.com/VoidArtanis/go-rest-boilerplate/shared"
+	config "./database"
+	"github.com/VoidArtanis/go-rest-boilerplate/routes"
+	"github.com/gin-gonic/gin"
+)
+
+// var DB = make(map[string]string)
+
+func spp() {
+
+	//Db Connect and Close
+	config.Init()
+	defer config.CloseDb()
+
+	//Init Gin
+	r := gin.Default()
+	routes.InitRouter(r)
+
+	//Run Server
+	r.Run(":8080")
+}

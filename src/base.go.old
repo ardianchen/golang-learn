@@ -1,0 +1,33 @@
+package main
+
+import (
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+)
+
+// func calculate(diameter float64) (float64, float64) {
+// 	// hitung luas
+// 	var area = math.Pi * math.Pow(diameter/2, 2)
+// 	// hitung keliling
+// 	var circumference = math.Pi * diameter
+// 	// kembalikan 2 nilai
+// 	return area, circumference
+// }
+
+func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	fmt.Printf(`run on port: ` + os.Getenv("PORT"))
+	// var diameter float64 = 30
+	// var area, circumference = calculate(diameter)
+	// fmt.Printf("luas lingkaran\t\t: %.2f \n", area)
+	// fmt.Printf("keliling lingkaran\t: %.2f \n", circumference)
+	router := gin.Default()
+	router.Run(`:` + os.Getenv("PORT"))
+}
